@@ -1,12 +1,9 @@
 {
     "name": "node-xdag-explore",
     "script": "./bin/www",
-    "exec_mode": "cluster",
+    "exec_mode": "fork",
     "instances":"max",
     "env": {
-        "NODE_ENV": "development"
-    },
-    "env_production": {
         "NODE_ENV": "production"
     },
     "error_file":"/var/log/pm2_explore_err.log",
