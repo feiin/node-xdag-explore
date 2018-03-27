@@ -1,0 +1,19 @@
+{
+  "name": "node-xdag-explore",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www | ./node_modules/.bin/bunyan"
+  },
+  "dependencies": {
+    "body-parser": "~1.10.1",
+    "bunyan": "^1.8.12",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.1.1",
+    "express": "~4.11.0",
+    "express-validator": "^5.0.3",
+    "jade": "~1.9.0",
+    "morgan": "~1.5.1",
+    "serve-favicon": "~2.2.0"
+  }
+}
