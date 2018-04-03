@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www | ./node_modules/.bin/bunyan"
+    "start": "node ./bin/www | ./node_modules/.bin/bunyan",
+    "test": "make test"
   },
   "dependencies": {
     "body-parser": "~1.10.1",
@@ -16,5 +17,10 @@
     "morgan": "~1.5.1",
     "node-xdag": "^1.0.1",
     "serve-favicon": "~2.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.0.5",
+    "should": "^13.2.1",
+    "supertest": "^3.0.0"
   }
 }
