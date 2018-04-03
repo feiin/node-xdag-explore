@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 const middlewares = require('./middleware/index');
 
 var app = express();
@@ -42,6 +41,7 @@ console.info('init request context');
 app.use(middlewares.context());
 app.use(middlewares.logger(rootLogger));
 app.use(middlewares.requestLogger);
+app.use(middlewares.xdag({ socketFile: '/tmp/xdag_test.sock' }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,7 +49,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

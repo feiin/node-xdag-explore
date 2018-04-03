@@ -14,6 +14,7 @@
     "express-validator": "^5.0.3",
     "jade": "~1.9.0",
     "morgan": "~1.5.1",
+    "node-xdag": "^1.0.1",
     "serve-favicon": "~2.2.0"
   }
 }
