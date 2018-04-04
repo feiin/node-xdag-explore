@@ -1,5 +1,5 @@
 const { check, query, validationResult } = require('express-validator/check');
-const { matchedData, sanitize } = require('express-validator/filter');
+const { matchedData } = require('express-validator/filter');
 const { makeRespond, arrayPage } = require('../../../lib/util');
 
 

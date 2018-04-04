@@ -1,6 +1,6 @@
 const { check, query, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
-const { makeRespond, arrayPage } = require('../../../lib/util');
+const { makeRespond } = require('../../../lib/util');
 
 
 function lastBlocks(request, response, next) {
