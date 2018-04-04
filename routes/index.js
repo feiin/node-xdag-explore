@@ -16,5 +16,6 @@ router.get('/v1/lastblocks/:num', controllers.v1.block.lastblocks);
 
 router.get('/v1/balance/:address([a-zA-Z0-9\/+]{32})', controllers.v1.balance.get);
 router.get('/v1/stats', controllers.v1.stats.get);
+router.get('/v1/pool/miners', controllers.v1.pool.miners);
 
 module.exports = router;

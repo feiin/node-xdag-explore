@@ -3,7 +3,7 @@ const { matchedData, sanitize } = require('express-validator/filter');
 const { makeRespond, arrayPage } = require('../../../lib/util');
 
 
-function lastBlocks(request, response, next) {
+function get(request, response, next) {
     let context = request.context,
         logger = context.logger,
         xdag = context.xdag;
@@ -16,28 +16,27 @@ function lastBlocks(request, response, next) {
 
     const params = matchedData(request);
 
-    logger.info('get lastBlocks ', params);
-    let num = params.num || 20;
-    if (num > 100) {
-        num = 100;
-    }
+    logger.info('get active miners ', params);
+    let pn = params.pn || 1;
 
-    xdag.getLastBlocks(num)
+    xdag.getMiners('active')
         .then((data) => {
+
+            data.result.miners = arrayPage(data.result.miners, pn, 20);
 
             response.json({ state: 0, result: data.result });
         })
         .catch((err) => {
-            logger.error('get lastBlocks error', err);
+            logger.error('get active miners', err);
             response.status(400).json({ state: 1, message: 'error' });
         })
 }
 
 function validators() {
 
-    return [check('num').exists().isInt().withMessage('Invalid blocks number')
+    return [query('pn').optional().isInt().withMessage("Invalid miners page number")
     ]
 }
 
 
-module.exports = makeRespond(validators(), lastBlocks);
+module.exports = makeRespond(validators(), get);
