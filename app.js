@@ -22,12 +22,12 @@ var rootLogger = bunyan.createLogger({
     name: 'node-xdag-explore',
     level: isProduction ? 'trace' : 'debug',
     src: !isProduction,
-    // streams: [{
-    //     type: 'rotating-file',
-    //     path: '/var/log/node-xdag-explore.log',
-    //     period: '1d',   // daily rotation
-    //     count: 5        // keep 5 back copies
-    // }]
+    streams: [{
+        type: 'rotating-file',
+        path: '/var/log/node-xdag-explore.log',
+        period: '1d',   // daily rotation
+        count: 5        // keep 5 back copies
+    }]
 });
 
 
@@ -41,7 +41,7 @@ console.info('init request context');
 app.use(middlewares.context());
 app.use(middlewares.logger(rootLogger));
 app.use(middlewares.requestLogger);
-app.use(middlewares.xdag({ socketFile: '/tmp/xdag_test.sock' }));
+app.use(middlewares.xdag({ socketFile: '/data/client/unix_sock.dat' }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
