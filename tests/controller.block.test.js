@@ -30,6 +30,28 @@ describe('controller/v1/block/get.js test', () => {
         });
     });
 
+    describe('#getLastBlocks api', () => {
+        it('should be getLastBlocks success', (done) => {
+            request(app)
+                .get('/v1/lastblocks/20')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(response => {
+                    let data = response.body;
+                    data.state.should.be.equal(0);
+                    data.result.should.be.not.empty();
+                    data.result.should.be.an.Array();
+                    data.result.length.should.above(0);
+                    done();
+                }).catch(err => {
+                    done(err);
+                })
+
+
+        });
+    });
+
+
     describe('#getBalance api', () => {
         it('should be getbalance success', done => {
             request(app).get('/v1/balance/4f1Sp/UD55JX5+kQCveUCpyenaPwqmpC')
