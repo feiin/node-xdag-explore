@@ -13,5 +13,6 @@ router.get('/', function (req, res, next) {
 
 router.get('/v1/block/:address([a-zA-Z0-9\/+]{32})', controllers.v1.block.get);
 router.get('/v1/balance/:address([a-zA-Z0-9\/+]{32})', controllers.v1.balance.get);
+router.get('/v1/stats', controllers.v1.stats.get);
 
 module.exports = router;

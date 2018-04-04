@@ -49,6 +49,27 @@ describe('controller/v1/block/get.js test', () => {
         })
     })
 
+    describe('#getstats api', () => {
+        it('should be getstats success', done => {
+            request(app).get('/v1/stats')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(response => {
+
+                    let data = response.body;
+                    data.state.should.be.equal(0);
+                    data.result.should.be.an.Object();
+                    data.result.should.have.property('blocks');
+                    data.result.should.have.property('main blocks');
+                    data.result.should.have.property('chain difficulty');
+                    done();
+                }).catch(err => {
+                    done(err);
+                })
+
+        })
+    })
+
 
     after((done) => {
         done();
