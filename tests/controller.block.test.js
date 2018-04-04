@@ -12,7 +12,7 @@ describe('controller/v1/block/get.js test', () => {
     describe('#getBlock api', () => {
         it('should be getBlock success', (done) => {
             request(app)
-                .get('/v1/test/4f1Sp/UD55JX5+kQCveUCpyenaPwqmpC')
+                .get('/v1/block/4f1Sp/UD55JX5+kQCveUCpyenaPwqmpC')
                 .set('Accept', 'application/json')
                 .expect(200)
                 .then(response => {
@@ -29,6 +29,25 @@ describe('controller/v1/block/get.js test', () => {
 
         });
     });
+
+    describe('#getBalance api', () => {
+        it('should be getbalance success', done => {
+            request(app).get('/v1/balance/4f1Sp/UD55JX5+kQCveUCpyenaPwqmpC')
+                .set('Accept', 'application/json')
+                .expect(200)
+                .then(response => {
+
+                    let data = response.body;
+                    data.state.should.be.equal(0);
+                    data.result.should.be.not.empty();
+                    parseFloat(data.result).should.be.a.Number().and.above(0);
+                    done();
+                }).catch(err => {
+                    done(err);
+                })
+
+        })
+    })
 
 
     after((done) => {
